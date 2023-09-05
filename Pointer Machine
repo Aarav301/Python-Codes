@@ -1,0 +1,50 @@
+from random import randint
+
+Score = 0
+
+while True:
+  print("Hello, Wanna Play a Game, yes or no, requires no money")
+  ans1 = input()
+
+  if ans1 == "yes":
+    print("If we have same you lost")
+    print("Choose a colour, Red or Black, write R or B")
+    ans2 = input()
+
+    if ans1 == "no":
+      print("Bye")
+      break
+
+    if ans2 == "R":
+      Q1 = randint(0, 2)
+      Q2 = randint(0, 2)
+
+      if Q1 == Q2:
+        print("You win 5 points")
+        Score += 5
+        print(Score)
+        continue
+      else:
+        print("you lost 5 points")
+        Score -= 5
+        print(Score)
+        continue
+
+    elif ans2 == "B":
+      Q3 = randint(0, 3)
+      Q4 = randint(0, 3)
+
+      if Q3 == Q4:
+        print("You lost 5 points")
+        Score -= 5
+        print(Score)
+        continue
+      else:
+        print("you won 5 points")
+        Score += 5
+        print(Score)
+        continue
+
+    else:
+      print("Invalid input")
+      continue
