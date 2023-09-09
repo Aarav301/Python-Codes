@@ -1,0 +1,47 @@
+import time
+from tkinter import *
+
+window = Tk()
+window.title("CPS Test")
+
+canvas = Canvas(window, width=500, height=200)
+canvas.pack()
+
+canvas.create_text(200, 100, text=("Stop when there is a pop up message"), font=("Helvetica", 14))
+
+score = 0
+start_time = time.time()
+
+def CPS():
+  global score
+  global start_time
+  canvas.delete("all")
+  score += 1
+  canvas.create_text(200, 100, text=(score), font=("Helvetica", 14))
+
+def stop_and_calculate():
+  global score
+  global start_time
+  end_time = time.time()
+  Button1.pack(side="right", padx=100)
+  clicks_per_second = score / (end_time - start_time)
+  canvas.create_text(200, 150, text=( clicks_per_second), font=("Helvetica", 14))
+  
+
+
+def reset_timer():
+  global after
+  window.after_cancel(after)
+  after = window.after(10000, stop_and_calculate)
+  Button1.pack(side="bottom", padx=100)
+
+Button1 = Button(window, text="CPS", command=CPS)
+Button1.pack(side=BOTTOM, padx=10)
+
+after = window.after(10000, stop_and_calculate)
+
+Button2 = Button(window, text="Reset", command=reset_timer)
+Button2.pack(side="top", padx=100)
+canvas.delete("all")
+
+window.mainloop()
